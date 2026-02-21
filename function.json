@@ -1,0 +1,220 @@
+{
+  "type": "scalar.function",
+  "input_schema": {
+    "type": "object",
+    "description": "A cat photograph to evaluate for effective use of surrounding space, including spatial proportion, environmental cooperation, and subject prominence.",
+    "properties": {
+      "cat_photograph": {
+        "type": "image",
+        "description": "The cat photograph to evaluate. This image will be assessed for how effectively the surrounding space — negative space, background, and environment — serves the cat as the subject. The photograph may range from a carefully composed portrait to a casual snapshot, and may feature any setting or background."
+      }
+    },
+    "required": [
+      "cat_photograph"
+    ]
+  },
+  "tasks": [
+    {
+      "type": "vector.completion",
+      "messages": [
+        {
+          "role": "system",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are an expert photography critic specializing in composition and framing. You evaluate how effectively a photograph balances the space around its subject."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image_url",
+              "image_url": {
+                "$jmespath": "input.cat_photograph.image_url"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Examine the spatial framing in this cat photograph. How well does the amount of space around the cat serve the subject? Consider whether the cat has been given appropriate room — neither cramped by aggressive cropping that carelessly slices through ears, paws, or tail, nor diminished by too much empty space that makes the cat feel insignificant and adrift."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        [
+          {
+            "type": "text",
+            "text": "The spatial balance is excellent. The cat is given exactly the right amount of room — it feels prominent and comfortable within the frame, with the surrounding space feeling intentional and considered. There is enough breathing room for the eye to settle, and the environment provides a sense of place without overwhelming the subject."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The framing is quite good. The cat has a comfortable amount of space around it and generally feels well-situated in the frame, though the spatial balance could be slightly more refined — a touch more or less room would make it feel more deliberate."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The spatial proportion is adequate. The cat has a reasonable amount of room, but the framing doesn't feel particularly intentional. It neither excels nor significantly detracts — the space is acceptable but unremarkable."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The framing is somewhat off. The cat either feels a bit cramped by the crop or a bit lost in the surrounding space. The spatial relationship doesn't quite serve the subject — it feels more accidental than considered."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The spatial balance is poor. The cat is either uncomfortably crowded by careless cropping that slices through its body without artistic justification, or it is overwhelmed by vast empty space that makes it feel like a footnote in its own photograph."
+          }
+        ]
+      ],
+      "output": {
+        "$starlark": "output[\"scores\"][0] * 1.0 + output[\"scores\"][1] * 0.75 + output[\"scores\"][2] * 0.5 + output[\"scores\"][3] * 0.25 + output[\"scores\"][4] * 0.0"
+      }
+    },
+    {
+      "type": "vector.completion",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image_url",
+              "image_url": {
+                "$jmespath": "input.cat_photograph.image_url"
+              }
+            },
+            {
+              "type": "text",
+              "text": "I'd like your opinion on this cat photograph. Look at the background and surrounding environment — the objects, textures, and visual elements that fill the space around the cat. Does the environment support the cat as the subject, or does it compete for the viewer's attention? Remember, a detailed environment can cooperate beautifully if it directs attention toward the cat, and a simple background isn't automatically better — what matters is whether the surroundings understand their role."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        [
+          {
+            "type": "text",
+            "text": "The environment beautifully supports the cat. Every element in the surrounding space cooperates — whether through clean simplicity that steps aside or through thoughtful arrangement that directs attention inward. The background knows its role and plays it well, letting the cat be the undisputed subject."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The surroundings mostly cooperate with the cat as subject. The background generally supports rather than competes, with only minor elements that could slightly pull the viewer's eye away. Overall, the environment works in the cat's favor."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The environment is neutral — it neither strongly supports nor significantly competes with the cat. The background is simply there. It doesn't actively guide the eye toward the subject, but it doesn't aggressively distract from it either."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The surroundings partially compete with the cat. There are noticeable elements in the background that draw attention away from the subject, fragmenting the viewer's focus. The environment doesn't fully understand its supporting role."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The environment actively competes with the cat. The background is cluttered with distracting objects and competing visual elements that fight for attention. The cat becomes just one element among many rather than the clear subject — the surroundings have become rival subjects."
+          }
+        ]
+      ],
+      "output": {
+        "$starlark": "output[\"scores\"][0] * 1.0 + output[\"scores\"][1] * 0.75 + output[\"scores\"][2] * 0.5 + output[\"scores\"][3] * 0.25 + output[\"scores\"][4] * 0.0"
+      }
+    },
+    {
+      "type": "vector.completion",
+      "messages": [
+        {
+          "role": "system",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are evaluating cat photographs. When shown a photograph, assess whether the cat feels like the clear, undeniable focal point of the image. Consider how the spatial framing and the surrounding environment work together to either elevate or diminish the cat's presence."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image_url",
+              "image_url": {
+                "$jmespath": "input.cat_photograph.image_url"
+              }
+            },
+            {
+              "type": "text",
+              "text": "When you look at this photograph, does the cat feel like the reason the image exists? Does it command the frame as the clear subject?"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me consider how the spatial composition and surrounding environment come together to shape the cat's prominence in this photograph."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Yes — looking at the whole image, how prominent does the cat feel as the focal point?"
+            }
+          ]
+        }
+      ],
+      "responses": [
+        [
+          {
+            "type": "text",
+            "text": "The cat absolutely commands this photograph. It is unmistakably the focal point — the viewer's eye arrives at the cat naturally and stays there willingly. The spatial framing and the surrounding environment work in concert to affirm the cat as the clear, significant subject. This image exists because of the cat, and every element quietly says so."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The cat feels like the primary subject. It holds the viewer's attention well and reads clearly as the focal point of the image. The overall composition supports its prominence, though the sense of command could be slightly stronger."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The cat is recognizable as the intended subject, but its prominence is moderate. The viewer can identify the cat as the focus, but it doesn't strongly command the frame — the photograph doesn't quite feel like it exists entirely in service of the cat."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The cat's prominence is weak. While present in the photograph, it struggles to assert itself as the focal point. The cat feels somewhat secondary — easy to overlook rather than impossible to miss."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "text": "The cat does not feel like the focal point of this image. It is either lost in too much space, buried behind competing visual elements, or cropped so tightly it feels like a fragment rather than a subject. The photograph feels aimless — the cat is technically present but is not the point."
+          }
+        ]
+      ],
+      "output": {
+        "$starlark": "output[\"scores\"][0] * 1.0 + output[\"scores\"][1] * 0.75 + output[\"scores\"][2] * 0.5 + output[\"scores\"][3] * 0.25 + output[\"scores\"][4] * 0.0"
+      }
+    }
+  ],
+  "description": "Evaluates the surrounding space in a cat photograph across three qualities: spatial proportion (appropriate room without cramping or excess), environmental cooperation (whether the background supports or competes with the cat), and subject prominence (whether the cat commands the frame as the clear focal point)."
+}

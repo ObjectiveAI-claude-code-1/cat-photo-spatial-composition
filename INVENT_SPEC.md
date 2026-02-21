@@ -1,0 +1,9 @@
+Evaluate the effective use of surrounding space in the cat photograph. Assess the space around the cat — the negative space, background, and environment — and determine whether it serves the subject or works against it.
+
+The cat should be given an appropriate amount of room. Too little space — an aggressive crop that carelessly slices through ears, paws, or tail without artistic justification — makes the image feel claustrophobic and careless. Too much space — a tiny cat lost in an ocean of empty floor or sky — makes the subject feel insignificant, like a footnote in its own photograph. The ideal is a spatial relationship where the cat feels prominent without feeling cramped, where the environment provides context or atmosphere without overwhelming the subject.
+
+Beyond the amount of space, consider whether the surrounding area supports or competes with the cat. A busy background full of competing objects can fragment the viewer's focus, stealing attention from the subject. A clean or softly rendered background lets the cat command the frame. However, cleanliness alone is not the standard — a richly detailed environment can work beautifully if it is organized in a way that still directs attention inward toward the cat.
+
+Score highly when the cat feels prominent without feeling cramped and the surrounding space cooperates with the subject — when the environment provides context or atmosphere while still letting the cat be the clear focal point.
+
+Score poorly when the space overwhelms the cat, making it feel insignificant; when it crowds the cat with careless cropping; or when it distracts from the cat with cluttered, competing elements that fragment the viewer's attention.
